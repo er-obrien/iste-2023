@@ -3,19 +3,16 @@ enum RadioMessage {
     napping = 38771
 }
 input.onButtonPressed(Button.A, function () {
+    basic.showIcon(IconNames.No)
     basic.showNumber(input.lightLevel())
+    datalogger.log(
+    datalogger.createCV("A", input.soundLevel()),
+    datalogger.createCV("B", input.lightLevel())
+    )
 })
 input.onButtonPressed(Button.B, function () {
+    basic.showIcon(IconNames.EighthNote)
     basic.showNumber(input.soundLevel())
-})
-input.onGesture(Gesture.Shake, function () {
-    for (let index = 0; index < 4; index++) {
-        datalogger.log(
-        datalogger.createCV("A", input.soundLevel()),
-        datalogger.createCV("B", input.lightLevel())
-        )
-        basic.pause(5000)
-    }
 })
 basic.forever(function () {
 	
